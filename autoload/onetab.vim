@@ -2,7 +2,6 @@ let s:startingPosition = []
 
 function! onetab#expand(type)
   let l:currentPosition = getcurpos()
-  let l:hasCursorMoved = (l:currentPosition == s:startingPosition) ? 0 : 1
 
   if a:type == 'start'
     let s:skipTheRest = 0
@@ -22,7 +21,7 @@ function! onetab#expand(type)
         endif
 
         return "\<C-n>"
-      elseif !l:hasCursorMoved
+      elseif (l:currentPosition == s:startingPosition)
         if a:type == 'tab' && strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
           return "\<Tab>"
 
