@@ -3,6 +3,7 @@ if empty(mapcheck("\<Tab>", 'i'))
     \<C-r>=onetab#expand('tab')<CR>
     \<C-r>=onetab#expand('completefunc')<CR>
     \<C-r>=onetab#expand('omnifunc')<CR>
+    \<C-r>=onetab#expand('file')<CR>
     \<C-r>=onetab#expand('include')<CR>
     \<C-r>=onetab#expand('keyword')<CR>
     \<C-r>=onetab#expand('dictionary')<CR>
