@@ -1,6 +1,7 @@
 if empty(mapcheck("\<Tab>", 'i'))
   inoremap <silent><Tab> <C-r>=onetab#expand('start')<CR>
     \<C-r>=onetab#expand('tab')<CR>
+    \<C-r>=onetab#expand('minisnip')<CR>
     \<C-r>=onetab#expand('completefunc')<CR>
     \<C-r>=onetab#expand('omnifunc')<CR>
     \<C-r>=onetab#expand('file')<CR>

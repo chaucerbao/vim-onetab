@@ -25,6 +25,10 @@ function! onetab#expand(type)
         if a:type == 'tab' && strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
           return "\<Tab>"
 
+        elseif a:type == 'minisnip' && g:loaded_minisnip == 1
+          call feedkeys("\<Plug>(minisnip)", 'i')
+          return ""
+
         elseif a:type == 'completefunc' && &completefunc != ''
           return "\<C-x>\<C-u>"
 
