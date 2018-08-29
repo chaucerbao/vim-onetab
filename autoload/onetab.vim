@@ -26,7 +26,9 @@ function! onetab#expand(type)
           return "\<Tab>"
 
         elseif a:type == 'minisnip' && g:loaded_minisnip == 1
-          call feedkeys("\<Plug>(minisnip)", 'i')
+          if (minisnip#ShouldTrigger())
+            return "\<Esc>:call \minisnip#Minisnip()\<CR>"
+          endif
           return ""
 
         elseif a:type == 'completefunc' && &completefunc != ''
