@@ -44,7 +44,7 @@ function! onetab#expand(type)
           return "\<C-x>\<C-i>"
 
         elseif a:type == 'keyword'
-          return "\<C-p>"
+          return "x\<BS>\<C-p>"
 
         elseif a:type == 'dictionary'
           return "\<C-x>\<C-k>"
