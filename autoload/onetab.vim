@@ -1,26 +1,25 @@
-let s:startingPosition = []
-
 function! onetab#expand(type)
   let l:currentPosition = getcurpos()
 
-  if a:type == 'start'
+  if a:type == 'init'
+    let s:startingPosition = []
     let s:skipTheRest = 0
+
     if !pumvisible()
       let s:startingPosition = l:currentPosition
     endif
-
-  elseif a:type == 'end'
-    let s:startingPosition = []
 
   else
     if !s:skipTheRest
       if pumvisible()
         let s:skipTheRest = 1
+
         if a:type == 'previous'
           return "\<C-p>"
         endif
 
         return "\<C-n>"
+
       elseif (l:currentPosition == s:startingPosition)
         if a:type == 'tab' && strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
           return "\<Tab>"

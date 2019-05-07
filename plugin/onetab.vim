@@ -1,20 +1,20 @@
-if empty(mapcheck("\<Tab>", 'i'))
-  let g:onetab = get(g:, 'onetab', ['tab', 'minisnip', 'completefunc', 'omnifunc', 'file', 'include', 'keyword', 'dictionary'])
+function s:expandTypes(types)
+  let l:expansion = ""
+  let l:types = ['init'] + a:types
 
-  let expansion = ""
-  for type in g:onetab
-    let expansion .= "<C-r>=onetab#expand('".type."')<CR>"
+  for l:type in l:types
+    let l:expansion .= "<C-r>=onetab#expand('".l:type."')<CR>"
   endfor
 
-  execute "
-    \inoremap <silent><Tab> <C-r>=onetab#expand('start')<CR>
-      \".expansion."
-      \<C-r>=onetab#expand('end')<CR>
-  \"
+  return l:expansion
+endfunction
+
+if empty(mapcheck("\<Tab>", 'i'))
+  let s:types = get(g:, 'onetab', ['tab', 'completefunc', 'omnifunc', 'file', 'keyword', 'dictionary'])
+
+  execute "inoremap <silent><Tab> ".s:expandTypes(s:types)
 endif
 
 if empty(mapcheck("\<S-Tab>", 'i'))
-  inoremap <silent><S-Tab> <C-r>=onetab#expand('start')<CR>
-    \<C-r>=onetab#expand('previous')<CR>
-    \<C-r>=onetab#expand('end')<CR>
+  execute "inoremap <silent><S-Tab> ".s:expandTypes(['previous'])
 endif
