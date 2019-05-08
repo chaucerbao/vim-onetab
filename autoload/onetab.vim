@@ -20,12 +20,12 @@ function! onetab#expand(type)
 
         return "\<C-n>"
 
-      elseif (l:currentPosition == s:startingPosition)
+      elseif l:currentPosition == s:startingPosition
         if a:type == 'tab' && strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
           return "\<Tab>"
 
         elseif a:type == 'minisnip' && g:loaded_minisnip == 1
-          if (minisnip#ShouldTrigger())
+          if minisnip#ShouldTrigger()
             return "\<Esc>:call \minisnip#Minisnip()\<CR>"
           endif
           return ""
