@@ -39,6 +39,10 @@ function! onetab#expand(type)
         elseif a:type == 'file' && getline('.')[col('.') - 2] !~ '\s'
           return "\<C-x>\<C-f>"
 
+        elseif a:type == 'abbrev'
+          call feedkeys("\<C-]>", 'i')
+          return ""
+
         elseif a:type == 'include'
           return "\<C-x>\<C-i>"
 
