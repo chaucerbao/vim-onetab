@@ -28,7 +28,7 @@ function! onetab#expand(type)
           if minisnip#ShouldTrigger()
             return "\<Esc>:call \minisnip#Minisnip()\<CR>"
           endif
-          return ""
+          return ''
 
         elseif a:type == 'completefunc' && &completefunc != ''
           return "\<C-x>\<C-u>"
@@ -41,7 +41,7 @@ function! onetab#expand(type)
 
         elseif a:type == 'abbrev'
           call feedkeys("\<C-]>", 'i')
-          return ""
+          return ''
 
         elseif a:type == 'include'
           return "\<C-x>\<C-i>"
